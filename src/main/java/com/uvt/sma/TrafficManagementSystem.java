@@ -17,6 +17,13 @@ public class TrafficManagementSystem {
         ContainerController container = rt.createMainContainer(profile);
 
         try {
+            // Create and start the RMA (Remote Monitoring Agent)
+            AgentController rma = container.createNewAgent("rma", "jade.tools.rma.rma", null);
+            rma.start();
+
+//            AgentController sniffer = container.createNewAgent("sniffer", "jade.tools.sniffer.Sniffer", new Object[]{"-gui"});
+//            sniffer.start();
+
             // Create and start the TrafficSignalAgent
             AgentController trafficSignalAgent = container.createNewAgent("TrafficSignalAgent", TrafficSignalAgent.class.getName(), null);
             trafficSignalAgent.start();
@@ -56,3 +63,4 @@ public class TrafficManagementSystem {
         }
     }
 }
+
