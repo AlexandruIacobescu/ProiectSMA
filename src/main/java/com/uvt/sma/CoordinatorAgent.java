@@ -1,5 +1,6 @@
 package com.uvt.sma;
 
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -55,12 +56,12 @@ public class CoordinatorAgent extends Agent {
 
             // Notify the agents involved about the resolution
             ACLMessage notifyAgent1 = new ACLMessage(ACLMessage.INFORM);
-            notifyAgent1.addReceiver(getAID(agent1));
+            notifyAgent1.addReceiver(getAgentAID(agent1));
             notifyAgent1.setContent("Conflict with " + agent2 + " has been resolved.");
             send(notifyAgent1);
 
             ACLMessage notifyAgent2 = new ACLMessage(ACLMessage.INFORM);
-            notifyAgent2.addReceiver(getAID(agent2));
+            notifyAgent2.addReceiver(getAgentAID(agent2));
             notifyAgent2.setContent("Conflict with " + agent1 + " has been resolved.");
             send(notifyAgent2);
         }
@@ -73,8 +74,15 @@ public class CoordinatorAgent extends Agent {
             ACLMessage policyUpdate = new ACLMessage(ACLMessage.INFORM);
             policyUpdate.setContent("New policy: " + newPolicy);
             // Assuming agents are known by their names, otherwise maintain a list of known agents
-            policyUpdate.addReceiver(/* add other agents' AIDs here */);
+            // Example: add all known agents' AIDs
+            // policyUpdate.addReceiver(new AID("TrafficSignalAgent1", AID.ISLOCALNAME));
+            // policyUpdate.addReceiver(new AID("VehicleAgent1", AID.ISLOCALNAME));
             send(policyUpdate);
+        }
+
+        private AID getAgentAID(String agentName) {
+            // Helper method to create an AID for a given agent name
+            return new AID(agentName, AID.ISLOCALNAME);
         }
     }
 
@@ -82,10 +90,5 @@ public class CoordinatorAgent extends Agent {
     protected void takeDown() {
         // Cleanup operations before the agent is terminated
         System.out.println("CoordinatorAgent " + getAID().getName() + " terminating.");
-    }
-
-    private jade.core.AID getAID(String agentName) {
-        // Helper method to get AID (Agent Identifier) by agent name
-        return new jade.core.AID(agentName, jade.core.AID.ISLOCALNAME);
     }
 }

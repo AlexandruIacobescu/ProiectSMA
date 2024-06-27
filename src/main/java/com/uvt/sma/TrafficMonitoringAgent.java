@@ -1,5 +1,6 @@
 package com.uvt.sma;
 
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -26,8 +27,18 @@ public class TrafficMonitoringAgent extends Agent {
             // For demonstration, broadcast the collected traffic data to all agents
             ACLMessage trafficInfo = new ACLMessage(ACLMessage.INFORM);
             trafficInfo.setContent(trafficData);
-            // Assuming agents are known by their names, otherwise maintain a list of known agents
-            trafficInfo.addReceiver(/* add other agents' AIDs here */);
+
+            // Adding known agent AIDs
+            trafficInfo.addReceiver(new AID("TrafficSignalAgent", AID.ISLOCALNAME));
+            trafficInfo.addReceiver(new AID("CoordinatorAgent", AID.ISLOCALNAME));
+            // Add other agents' AIDs as needed
+            trafficInfo.addReceiver(new AID("VehicleAgent1", AID.ISLOCALNAME));
+            trafficInfo.addReceiver(new AID("VehicleAgent2", AID.ISLOCALNAME));
+            trafficInfo.addReceiver(new AID("VehicleAgent3", AID.ISLOCALNAME));
+            trafficInfo.addReceiver(new AID("PublicTransportAgent", AID.ISLOCALNAME));
+            trafficInfo.addReceiver(new AID("EmergencyVehicleAgent", AID.ISLOCALNAME));
+            trafficInfo.addReceiver(new AID("MaintenanceAgent", AID.ISLOCALNAME));
+
             send(trafficInfo);
 
             block(5000); // Simulate time interval for data collection
