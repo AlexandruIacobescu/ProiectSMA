@@ -90,6 +90,31 @@ La rularea proiectului, următorii agenți vor fi lansați:
 
 - RMA oferă o interfață grafică pentru a monitoriza starea platformei și a agenților.
 
+## Detalii de Funcționare
+După lansarea aplicației, agenții vor începe să-și desfășoare activitățile și să comunice între ei pentru a simula gestionarea traficului. Iată câteva exemple de mesaje afișate de agenți:
+
+```txt
+TrafficSignalAgent TrafficSignalAgent@172.25.0.1:1099/JADE is ready to manage intersection: default-intersection
+VehicleAgent VehicleAgent1@172.25.0.1:1099/JADE heading to: Destination1
+VehicleAgent VehicleAgent2@172.25.0.1:1099/JADE heading to: Destination2
+VehicleAgent VehicleAgent3@172.25.0.1:1099/JADE heading to: Destination3
+PublicTransportAgent PublicTransportAgent@172.25.0.1:1099/JADE managing: bus
+Intersection default-intersection: Green light for 30 seconds.
+EmergencyVehicleAgent EmergencyVehicleAgent@172.25.0.1:1099/JADE handling emergency: ambulance
+Intersection default-intersection: Yellow light for 5 seconds.
+MaintenanceAgent MaintenanceAgent@172.25.0.1:1099/JADE with initial schedule: No maintenance scheduled.
+Intersection default-intersection: Red light for 30 seconds.
+CoordinatorAgent CoordinatorAgent@172.25.0.1:1099/JADE is ready.
+TrafficMonitoringAgent TrafficMonitoringAgent@172.25.0.1:1099/JADE is monitoring traffic.
+TrafficMonitoringAgent collected: Traffic data at 1719534044262
+Intersection default-intersection: Green light for 30 seconds.
+Intersection default-intersection: Yellow light for 5 seconds.
+Intersection default-intersection: Red light for 30 seconds.
+TrafficMonitoringAgent collected: Traffic data at 1719534049278
+Intersection default-intersection: Green light for 30 seconds.
+Intersection default-intersection: Yellow light for 5 seconds.
+Intersection default-intersection: Red light for 30 seconds.
+```
 ## Autor
 
 - Iacobescu Alexandru
