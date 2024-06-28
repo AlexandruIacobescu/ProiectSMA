@@ -123,4 +123,4 @@ Intersection default-intersection: Red light for 30 seconds.
 
 ## Licență
 
-Acest proiect este licențiat sub Licența MIT. Vezi fișierul LICENSE pentru detalii.
+Acest proiect este licențiat sub Licența MIT.
